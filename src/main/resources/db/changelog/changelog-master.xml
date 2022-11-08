@@ -9,5 +9,6 @@
     <include file="/db/changelog/changes/create-employees-table-changelog.xml"/>
     <include file="/db/changelog/changes/create-departments-table-changelog.xml"/>
     <include file="/db/changelog/changes/foreignKeys-changelog.xml"/>
+    <include file="db/changelog/changes/insert-data-changelog.xml"/>
 </databaseChangeLog>
 

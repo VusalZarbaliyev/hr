@@ -13,9 +13,9 @@
             </column>
             <column name="name" type="VARCHAR(100)"/>
             <column name="manager_id" type="INT"/>
-            <column name="created_at" type="TIMESTAMP"/>
+            <column name="created_at" type="TIMESTAMP(6)" defaultValueComputed="now()"/>
             <column name="created_by" type="INT"/>
-            <column name="updated_at" type="TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP(6)" defaultValueComputed="now()"/>
             <column name="updated_by" type="INT"/>
         </createTable>
         <rollback>
