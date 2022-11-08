@@ -6,6 +6,7 @@ import com.avinty.hr.repository.DepartmentRepository;
 import com.avinty.hr.repository.EmployeeRepository;
 import com.avinty.hr.services.DepartmentService;
 import com.avinty.hr.services.EmployeeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class DepartmentServiceImpl implements DepartmentService {
 
     @Autowired
@@ -23,6 +25,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public List<DepartmentEntity> getAllDepartments() {
+        log.info("Fetching all departments data from db");
         return departmentRepository.findAll();
     }
 
@@ -32,10 +35,12 @@ public class DepartmentServiceImpl implements DepartmentService {
         if (!departmentEntity.isPresent()){
             throw new Exception("Department not found");
         }
+        log.info("Setting null value for departments of employees");
         departmentEntity.get().getEmployees().stream().forEach(employeeEntity -> {
             employeeEntity.setDepId(null);
             employeeRepository.save(employeeEntity);
         });
+        log.info("Deleting department from db");
         departmentRepository.deleteById(id);
         return departmentEntity.get();
     }
