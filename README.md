@@ -2,6 +2,8 @@
 
 Swagger: http://localhost:8085/swagger-ui/index.html#/
 
+To see the time recording please open "time_record.html" in the project folder
+
 To use the services provided by the HR application, you must authenticate your credentials.
 
 Endpoint: http://localhost:8085/API/AUTH/login
