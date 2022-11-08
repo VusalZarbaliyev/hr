@@ -19,7 +19,7 @@ public class EmployeeEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
-    private long id;
+    private Integer id;
 
     @Column(name = "email")
     private String email;
@@ -32,7 +32,7 @@ public class EmployeeEntity implements Serializable {
     private String fullName;
 
     @Column(name = "dep_id")
-    private int depId;
+    private Integer depId;
 
     @ManyToOne
     @JoinColumn(name = "dep_id", nullable = false, insertable = false, updatable = false)

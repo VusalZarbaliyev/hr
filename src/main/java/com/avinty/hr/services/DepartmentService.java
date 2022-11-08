@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface DepartmentService {
     List<DepartmentEntity> getAllDepartments();
+    DepartmentEntity delete(Integer id) throws Exception;
 }

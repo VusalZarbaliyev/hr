@@ -18,7 +18,7 @@ public class DepartmentEntity implements Serializable {
 
     @Id
     @Column(name = "id", updatable = false, nullable = false)
-    private long id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -26,7 +26,7 @@ public class DepartmentEntity implements Serializable {
     @Column(name = "manager_id")
     private String managerId;
 
-    @OneToMany(targetEntity=EmployeeEntity.class, mappedBy="depId",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity=EmployeeEntity.class, mappedBy="depId", fetch = FetchType.LAZY)
     List<EmployeeEntity> employees;
 
     @CreationTimestamp

@@ -7,9 +7,7 @@ import com.avinty.hr.services.DepartmentService;
 import liquibase.pro.packaged.R;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,5 +27,11 @@ public class DepartmentController {
         List<DepartmentEntity> departments = service.getAllDepartments();
         List<DepartmentDTO> departmentDTOList = departments.stream().map(entity->DepartmentDTO.from(entity)).collect(Collectors.toList());
         return new ResponseEntity<>(ResponseDTO.data(departmentDTOList), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/department/{id}")
+    public ResponseEntity<ResponseDTO> delete(@PathVariable Integer id) throws Exception {
+        DepartmentEntity departmentEntity = service.delete(id);
+        return new ResponseEntity<>(ResponseDTO.data(DepartmentDTO.from(departmentEntity)), HttpStatus.OK);
     }
 }
