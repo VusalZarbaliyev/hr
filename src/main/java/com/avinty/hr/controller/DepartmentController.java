@@ -29,6 +29,13 @@ public class DepartmentController {
         return new ResponseEntity<>(ResponseDTO.data(departmentDTOList), HttpStatus.OK);
     }
 
+    @GetMapping("/department")
+    public ResponseEntity<ResponseDTO> departmentByName(@RequestParam String name) throws Exception {
+        List<DepartmentEntity> departments = service.departmentByName(name);
+        List<DepartmentDTO> departmentDTOList = departments.stream().map(entity->DepartmentDTO.from(entity)).collect(Collectors.toList());
+        return new ResponseEntity<>(ResponseDTO.data(departmentDTOList), HttpStatus.OK);
+    }
+
     @DeleteMapping("/department/{id}")
     public ResponseEntity<ResponseDTO> delete(@PathVariable Integer id) throws Exception {
         DepartmentEntity departmentEntity = service.delete(id);

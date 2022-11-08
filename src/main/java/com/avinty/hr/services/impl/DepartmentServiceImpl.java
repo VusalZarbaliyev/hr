@@ -39,4 +39,13 @@ public class DepartmentServiceImpl implements DepartmentService {
         departmentRepository.deleteById(id);
         return departmentEntity.get();
     }
+
+    @Override
+    public List<DepartmentEntity> departmentByName(String name) throws Exception {
+        Optional<List<DepartmentEntity>> departments = departmentRepository.findByName(name);
+        if (!departments.isPresent() || departments.get().size()==0){
+            throw new Exception("Department not found");
+        }
+        return departments.get();
+    }
 }
