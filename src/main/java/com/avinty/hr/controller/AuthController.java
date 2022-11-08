@@ -24,12 +24,9 @@ public class AuthController {
     @Autowired private EmployeeService employeeService;
     @Autowired private JWTUtil jwtUtil;
     @Autowired private AuthenticationManager authManager;
-    @Autowired private PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
     public Map<String, Object> registerHandler(@RequestBody EmployeeEntity employee) throws Exception {
-        String encodedPass = passwordEncoder.encode(employee.getPassword());
-        employee.setPassword(encodedPass);
         employee = employeeService.insert(employee);
         String token = jwtUtil.generateToken(employee.getEmail());
         return Collections.singletonMap("jwt-token", token);

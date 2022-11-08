@@ -4,6 +4,7 @@ import com.avinty.hr.entity.EmployeeEntity;
 import com.avinty.hr.repository.EmployeeRepository;
 import com.avinty.hr.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +13,10 @@ import java.util.List;
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
-    EmployeeRepository employeeRepository;
+    private EmployeeRepository employeeRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<EmployeeEntity> getAllEmployees() {
@@ -24,6 +28,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employeeRepository.findByEmail(employeeEntity.getEmail()).isPresent()){
             throw new Exception("This email has already been taken");
         }
+        String encodedPass = passwordEncoder.encode(employeeEntity.getPassword());
+        employeeEntity.setPassword(encodedPass);
         return employeeRepository.save(employeeEntity);
     }
 }
