@@ -1,7 +1,6 @@
 package com.avinty.hr.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,7 +9,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "EMPLOYEES")
@@ -43,14 +42,14 @@ public class EmployeeEntity implements Serializable {
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+    private Date createdAt;
 
     @Column(name = "created_by", updatable = false)
     private String createdBy;
 
     @CreationTimestamp
     @Column(name = "updated_at", nullable = false, updatable = false)
-    private LocalDateTime updateAt;
+    private Date updateAt;
 
     @Column(name = "updated_by", updatable = false)
     private String updatedBy;

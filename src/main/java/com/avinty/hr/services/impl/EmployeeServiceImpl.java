@@ -20,7 +20,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeEntity insert(EmployeeEntity employeeEntity) {
+    public EmployeeEntity insert(EmployeeEntity employeeEntity) throws Exception {
+        if (employeeRepository.findByEmail(employeeEntity.getEmail()).isPresent()){
+            throw new Exception("This email has already been taken");
+        }
         return employeeRepository.save(employeeEntity);
     }
 }

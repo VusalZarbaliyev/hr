@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface EmployeeService {
     List<EmployeeEntity> getAllEmployees();
-    EmployeeEntity insert(EmployeeEntity employeeEntity);
+    EmployeeEntity insert(EmployeeEntity employeeEntity) throws Exception;
 }

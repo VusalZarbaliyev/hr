@@ -2,8 +2,8 @@ package com.avinty.hr.controller;
 
 import com.avinty.hr.entity.EmployeeEntity;
 import com.avinty.hr.model.LoginCredentials;
-import com.avinty.hr.repository.EmployeeRepository;
 import com.avinty.hr.security.JWTUtil;
+import com.avinty.hr.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,16 +21,16 @@ import java.util.Map;
 @RequestMapping("/API/AUTH")
 public class AuthController {
 
-    @Autowired private EmployeeRepository employeeRepo;
+    @Autowired private EmployeeService employeeService;
     @Autowired private JWTUtil jwtUtil;
     @Autowired private AuthenticationManager authManager;
     @Autowired private PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
-    public Map<String, Object> registerHandler(@RequestBody EmployeeEntity employee){
+    public Map<String, Object> registerHandler(@RequestBody EmployeeEntity employee) throws Exception {
         String encodedPass = passwordEncoder.encode(employee.getPassword());
         employee.setPassword(encodedPass);
-        employee = employeeRepo.save(employee);
+        employee = employeeService.insert(employee);
         String token = jwtUtil.generateToken(employee.getEmail());
         return Collections.singletonMap("jwt-token", token);
     }

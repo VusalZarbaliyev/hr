@@ -17,6 +17,8 @@
             <column name="password" value="$2a$10$ECtRotLFdZssCsvbHmaaJuEuoD4LL/wtmg8miUMQijtGFrxdooIie"/>
             <column name="full_name" value="Test test"/>
             <column name="dep_id" value="1"/>
+            <column name="created_at" valueDate="CURRENT_TIMESTAMP()"/>
+            <column name="updated_at" valueDate="CURRENT_TIMESTAMP()"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

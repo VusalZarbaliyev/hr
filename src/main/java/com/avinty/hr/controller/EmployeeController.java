@@ -27,8 +27,7 @@ public class EmployeeController{
 
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ResponseDTO> createEmployee(@RequestBody EmployeeEntity employeeEntity) {
-        //if (service.existBook(book)) throw new DuplicateRecordException(book);
+    public ResponseEntity<ResponseDTO> createEmployee(@RequestBody EmployeeEntity employeeEntity) throws Exception {
         EmployeeEntity employee = service.insert(employeeEntity);
         return new ResponseEntity<>(ResponseDTO.data(employee), HttpStatus.OK);
     }
